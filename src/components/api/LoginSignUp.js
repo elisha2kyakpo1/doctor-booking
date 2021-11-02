@@ -23,6 +23,19 @@ const signUpUser = (payload) => {
   };
 };
 
+const addDoctor = (payload) => {
+  const credentials = { ...payload };
+  return async function addUser(dispatch) {
+    return fetch('http://localhost:3000/doctor', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  }).then((response) => response.status === 201 && dispatch(addDoctorApi(credentials)));
+  };
+};
+
 const removeUserApi = (id) => {
   const success = 'The doctor was deleted successfully!';
   const msg = 'Waiting';
@@ -37,4 +50,11 @@ const removeUserApi = (id) => {
       .then((text) => text === success && dispatch(removeUserApi(id)))
       .catch((error) => error === msg);
   };
+};
+
+export {
+  loginUser,
+  signUpUser,
+  removeUserApi,
+  addDoctor,
 };

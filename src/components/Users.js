@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { InputGroup, FormControl, Subtitle, Form, Button } from 'react-bootstrap';
 
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
@@ -26,39 +27,35 @@ const Users = ({ setToken }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="inner-container">
-      <div className="header">
-        Login
-      </div>
-      <div className="box">
+    <section onSubmit={handleSubmit} className="login">
+      <div className="inner-login">
+        <div className="container">
+          <div className="inner">
+            <h4>Login</h4>
+          </div>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
 
-        <div className="input-group">
-          <label htmlFor="email">Email</label>
-          <input onChange={e => setEmail(e.target.value)}
-            type="text"
-            name="email"
-            className="login-input"
-            placeholder="enter your email"/>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
         </div>
-
-        <div className="input-group">
-          <label htmlFor="password">Password</label>
-          <input
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-            name="password"
-            className="login-input"
-            placeholder="enter your Password"/>
-        </div>
-
-        <button
-          type="button"
-          className="login-btn"
-        >
-        Login
-        </button>
       </div>
-    </form>
+    </section>
   );
 }
 
