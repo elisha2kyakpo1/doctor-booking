@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Users from './components/Users';
+import Users from './components/login/Users';
 import Doctor from './components/Doctor';
 
 function App() {

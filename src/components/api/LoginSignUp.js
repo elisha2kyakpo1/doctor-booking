@@ -36,7 +36,7 @@ const addDoctor = (payload) => {
   };
 };
 
-const removeUserApi = (id) => {
+const removeDoctorApi = (id) => {
   const success = 'The doctor was deleted successfully!';
   const msg = 'Waiting';
   return async function removeUser(dispatch) {
@@ -55,6 +55,6 @@ const removeUserApi = (id) => {
 export {
   loginUser,
   signUpUser,
-  removeUserApi,
+  removeDoctorApi,
   addDoctor,
 };

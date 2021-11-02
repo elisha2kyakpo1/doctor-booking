@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
+import './Users.css';
 
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
