@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { InputGroup, FormControl, Subtitle, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
