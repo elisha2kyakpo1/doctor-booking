@@ -9,13 +9,32 @@ const loginUser = async(credentials) => {
   .then(data => data.json())
 };
 
-const signUpUser = (credentials) => {
-  return fetch('http://localhost:3000/signup', {
+const signUpUser = (payload) => {
+  const userDetails = { ...payload };
+  return async function addUser(dispatch) {
+    return fetch('http://localhost:3000/signup', {
     method: 'POST',
     headers: {
       "Accept": "application/json"
     },
-    body: credentials
+    body: userDetails
   })
-  .then(data => data.json())
+  .then((response) => response.status === 201 && dispatch(addUserApi(userDetails)));
+  };
+};
+
+const removeUserApi = (id) => {
+  const success = 'The doctor was deleted successfully!';
+  const msg = 'Waiting';
+  return async function removeUser(dispatch) {
+    fetch(`${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }).then((response) => response.text())
+      .then((text) => text === success && dispatch(removeUserApi(id)))
+      .catch((error) => error === msg);
+  };
 };
