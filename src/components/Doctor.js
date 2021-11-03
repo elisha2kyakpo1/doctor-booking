@@ -8,7 +8,7 @@ const Doctor = (props) => {
     const formData = new FormData(event.target);
     addDoctor(formData)
       .then((data) => props.setDoctor(data.post))
-      .catch(console.error);
+      .catch((error) => error);
   };
 
   return (
