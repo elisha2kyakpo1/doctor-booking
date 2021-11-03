@@ -1,8 +1,20 @@
-const GET_DOCTORS = 'greetings/GET_DOCTORS';
+const GET_DOCTORS = 'DOCTORS/GET_DOCTORS';
+const ADD_DOCTOR = 'DOCTORS/ADD_DOCTOR';
+const REMOVE_DOCTOR = 'DOCTORS/REMOVE_DOCTOR';
 
 const loadDoctors = (json) => ({
   type: GET_DOCTORS,
   json,
+});
+
+const removeDoctorAction = (id) => ({
+  type: REMOVE_DOCTOR,
+  id,
+});
+
+const addDoctorAction = (payload) => ({
+  type: ADD_DOCTOR,
+  payload,
 });
 
 const getDoctors = () => (dispatch) => {
@@ -36,4 +48,6 @@ const doctorReducer = (state = [], action) => {
 export {
   doctorReducer,
   getDoctors,
+  addDoctorAction,
+  removeDoctorAction,
 };

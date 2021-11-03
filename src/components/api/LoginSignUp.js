@@ -1,3 +1,5 @@
+import { addDoctorAction, removeDoctorAction } from '../../redux/Doctors';
+
 const loginUser = async (credentials) => fetch('https://book-a-doctor.herokuapp.com/authenticate', {
   method: 'POST',
   headers: {
@@ -17,7 +19,7 @@ const signUpUser = (payload) => {
       },
       body: userDetails,
     })
-      .then((response) => response.status === 201 && dispatch(addUserApi(userDetails)));
+      .then((response) => response.status === 201 && dispatch(addUser(userDetails)));
   };
 };
 
@@ -30,7 +32,7 @@ const addDoctor = (payload) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(credentials),
-    }).then((response) => response.status === 201 && dispatch(addDoctorApi(credentials)));
+    }).then((response) => response.status === 201 && dispatch(addDoctorAction(credentials)));
   };
 };
 
@@ -45,7 +47,7 @@ const removeDoctorApi = (id) => {
         'content-type': 'application/json',
       },
     }).then((response) => response.text())
-      .then((text) => text === success && dispatch(removeUserApi(id)))
+      .then((text) => text === success && dispatch(removeDoctorAction(id)))
       .catch((error) => error === msg);
   };
 };
