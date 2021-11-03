@@ -1,6 +1,6 @@
 import { addDoctorAction, removeDoctorAction } from '../../redux/Doctors';
 
-const loginUser = async (credentials) => fetch('https://book-a-doctor.herokuapp.com/authenticate', {
+const loginUser = async (credentials) => fetch('http://localhost:3000/authenticate', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

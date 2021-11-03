@@ -1,40 +1,72 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { addDoctor } from './api/LoginSignUp';
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { getDoctors } from '../redux/Doctors';
 
-const Doctor = (props) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    addDoctor(formData)
-      .then((data) => props.setDoctor(data.post))
-      .catch((error) => error);
-  };
+const Doctors = () => {
+  const doctors = useSelector((state) => state.doctorReducer);
+  const [doctor, setDoctor] = useState({});
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!doctors.length) {
+      dispatch(getDoctors());
+    }
+  }, []);
+
+  const [body, displayBody] = useState([]);
+
+  useEffect(() => {
+    displayBody(doctors);
+  }, [doctors]);
+
+  const rndInt = Math.floor(Math.random() * 4) + 1;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="caption">
-        Name of Doctor
-        <input type="text" name="name" />
-      </label>
-      <label htmlFor="caption">
-        Email
-        <input type="text" name="email" />
-      </label>
-      <label htmlFor="caption">
-        Specialization
-        <input type="text" name="specialization" />
-      </label>
-      <label htmlFor="image">
-        Upload image
-        <input type="file" name="image" accept="image/*" />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+
+    <>
+
+      <div className="outter_container">
+        <div className="contain">
+          <div className="doct">
+            <div className="leading">
+              <h1 className="please">LEADING DOCTORS</h1>
+              <h2 className="select">please select a doctor</h2>
+            </div>
+            <div className="shape">
+              <div className="inner">
+                <i className="material-icons" style={{ color: 'white' }}>change_history</i>
+              </div>
+            </div>
+            <div className="container">
+              <div className="row_contain">
+                <div className="doctors_list row">
+                  {doctors.map((doctor) => (
+                    <div className="col-12 col-md-6 col-lg-4">
+                      <div className="doctor">
+                        <div className="circle">
+                          <img src="" alt="doctors" />
+                        </div>
+                        <h2 className="name">{doctor.name}</h2>
+                      </div>
+                    </div>
+
+                  ))}
+
+                </div>
+              </div>
+            </div>
+            <div className="shape opposite">
+              <div className="inner inner_opposite">
+                <i className="material-icons" style={{ color: 'white' }}>change_history</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
-Doctor.propTypes = {
-  setDoctor: PropTypes.func.isRequired,
-};
 
-export default Doctor;
+export default Doctors;

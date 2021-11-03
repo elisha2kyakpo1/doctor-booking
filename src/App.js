@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Users from './components/login/Users';
 import Doctor from './components/Doctor';
+import UserToken from './components/login/UserToken';
+import DoctorRegisteration from './components/DoctorRegisteration';
 
 function App() {
-  const [token, setToken] = useState();
+  const { token, setToken } = UserToken();
   if (!token) {
     return <Users setToken={setToken} />;
   }
@@ -15,10 +17,10 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/dashboard">
-            <Doctor />
+            <DoctorRegisteration />
           </Route>
           <Route path="/users">
-            <Users />
+            <Doctor />
           </Route>
         </Switch>
       </BrowserRouter>
