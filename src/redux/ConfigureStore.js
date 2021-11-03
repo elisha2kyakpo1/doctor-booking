@@ -7,7 +7,9 @@ const reducer = combineReducers({
   doctorReducer,
 });
 
-export const store = createStore(
+const store = createStore(
   reducer,
   applyMiddleware(thunk, logger),
 );
+
+export default store;

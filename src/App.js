@@ -6,8 +6,8 @@ import Doctor from './components/Doctor';
 
 function App() {
   const [token, setToken] = useState();
-  if(!token) {
-    return <Users setToken={setToken} />
+  if (!token) {
+    return <Users setToken={setToken} />;
   }
   return (
     <div className="wrapper">

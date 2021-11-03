@@ -1,38 +1,36 @@
-const loginUser = async(credentials) => {
-  return fetch('http://localhost:3000/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-  .then(data => data.json())
-};
+const loginUser = async (credentials) => fetch('https://book-a-doctor.herokuapp.com/authenticate', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(credentials),
+})
+  .then((data) => data.json());
 
 const signUpUser = (payload) => {
   const userDetails = { ...payload };
   return async function addUser(dispatch) {
-    return fetch('http://localhost:3000/signup', {
-    method: 'POST',
-    headers: {
-      "Accept": "application/json"
-    },
-    body: userDetails
-  })
-  .then((response) => response.status === 201 && dispatch(addUserApi(userDetails)));
+    return fetch('https://book-a-doctor.herokuapp.com/sign_up', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: userDetails,
+    })
+      .then((response) => response.status === 201 && dispatch(addUserApi(userDetails)));
   };
 };
 
 const addDoctor = (payload) => {
   const credentials = { ...payload };
   return async function addUser(dispatch) {
-    return fetch('http://localhost:3000/doctor', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  }).then((response) => response.status === 201 && dispatch(addDoctorApi(credentials)));
+    return fetch('https://book-a-doctor.herokuapp.com/api/v1/doctors', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    }).then((response) => response.status === 201 && dispatch(addDoctorApi(credentials)));
   };
 };
 
@@ -40,7 +38,7 @@ const removeDoctorApi = (id) => {
   const success = 'The doctor was deleted successfully!';
   const msg = 'Waiting';
   return async function removeUser(dispatch) {
-    fetch(`${id}`, {
+    fetch(`https://book-a-doctor.herokuapp.com/api/v1/doctors/${id}`, {
       method: 'DELETE',
       body: JSON.stringify({ id }),
       headers: {
