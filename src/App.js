@@ -4,21 +4,20 @@ import './App.css';
 import Users from './components/login/Users';
 import Doctor from './components/Doctor';
 import UserToken from './components/login/UserToken';
-import DoctorRegisteration from './components/DoctorRegisteration';
+import DoctorRegisteration from './components/doctor-register/DoctorRegisteration';
 
 function App() {
   const { token, setToken } = UserToken();
-  if (!token) {
+  console.log(token);
+  if (token === null) {
     return <Users setToken={setToken} />;
   }
   return (
     <div className="wrapper">
-      <h1>Application</h1>
+      <DoctorRegisteration />
       <BrowserRouter>
         <Switch>
-          <Route path="/dashboard">
-            <DoctorRegisteration />
-          </Route>
+          <Route path="/dashboard"> </Route>
           <Route path="/users">
             <Doctor />
           </Route>

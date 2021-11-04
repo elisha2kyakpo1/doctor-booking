@@ -18,7 +18,7 @@ const addDoctorAction = (payload) => ({
 });
 
 const getDoctors = () => (dispatch) => {
-  fetch('https://book-doctor-appointment.herokuapp.com/doctors')
+  fetch('https://book-a-doctor.herokuapp.com/api/v1/doctors')
     .then((response) => response.json())
     .then((json) => dispatch(loadDoctors(json)));
 };
@@ -32,12 +32,14 @@ const doctorReducer = (state = [], action) => {
           name,
           email,
           specialization,
+          image
         } = doctor;
         return {
           id,
           name,
           email,
           specialization,
+          image
         };
       });
     default:
