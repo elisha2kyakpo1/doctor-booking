@@ -12,7 +12,7 @@ const loginUser = async (credentials) => fetch('http://localhost:3000/authentica
 const signUpUser = (payload) => {
   const userDetails = { ...payload };
   return async function addUser(dispatch) {
-    return fetch('https://book-a-doctor.herokuapp.com/sign_up', {
+    return fetch('http://localhost:3000/sign_up', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
