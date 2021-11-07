@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Form, Button, Card } from 'react-bootstrap';
-import './Users.css';
+import { signUpUser } from '../api/LoginSignUp';
 
-async function loginUser(credentials) {
-  return fetch('http://localhost:3000/authenticate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  })
-    .then((data) => data.json());
-}
+const SignUp = () => {
+  const dispatch = useDispatch();
 
-const Users = ({ setToken }) => {
+  const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
-      email,
-      password,
-    });
-    setToken(token);
+    if (name && email && password && confirmPassword) {
+      dispatch(signUpUser({
+        name, email, password, confirmPassword,
+      }));
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      e.target.reset();
+    }
   };
 
   return (
@@ -32,9 +30,20 @@ const Users = ({ setToken }) => {
       <div className="inner-login">
         <div className="container">
           <div className="inner">
-            <h1>Login</h1>
+            <h1>Sign up</h1>
           </div>
           <Form className="form">
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                className="input"
+                type="text"
+                placeholder="Username"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -60,6 +69,19 @@ const Users = ({ setToken }) => {
                   setPassword(e.target.value);
                 }}
               />
+              <Form.Text className="text">
+                you have to enter at least more than 6 characters!
+              </Form.Text>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control
+                className="input"
+                type="password"
+                placeholder="Confirm Password"
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
@@ -68,8 +90,8 @@ const Users = ({ setToken }) => {
               Submit
             </Button>
             <div className="signup">
-              <p>Not a member?</p>
-              <Card.Link className="ml-2" href="#">SignUp</Card.Link>
+              <p>Already a member?</p>
+              <Card.Link className="ml-2" href="#">Sign in</Card.Link>
             </div>
           </Form>
         </div>
@@ -78,8 +100,4 @@ const Users = ({ setToken }) => {
   );
 };
 
-Users.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
-
-export default Users;
+export default SignUp;

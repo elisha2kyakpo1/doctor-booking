@@ -32,14 +32,14 @@ const doctorReducer = (state = [], action) => {
           name,
           email,
           specialization,
-          image
+          image,
         } = doctor;
         return {
           id,
           name,
           email,
           specialization,
-          image
+          image,
         };
       });
     default:

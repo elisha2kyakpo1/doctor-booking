@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter, Route, Switch,
+} from 'react-router-dom';
 import './App.css';
-import Users from './components/login/Users';
+import Users from './components/login/UsersSignIn';
 import Doctor from './components/Doctor';
 import UserToken from './components/login/UserToken';
-import DoctorRegisteration from './components/doctor-register/DoctorRegisteration';
+import SignUp from './components/signUp/Signup';
 
 function App() {
   const { token, setToken } = UserToken();
@@ -14,7 +16,7 @@ function App() {
   }
   return (
     <div className="wrapper">
-      <DoctorRegisteration />
+      <SignUp />
       <BrowserRouter>
         <Switch>
           <Route path="/dashboard"> </Route>
