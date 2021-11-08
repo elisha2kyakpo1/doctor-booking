@@ -9,18 +9,15 @@ const loginUser = async (credentials) => fetch('http://localhost:3000/authentica
 })
   .then((data) => data.json());
 
-const signUpUser = (payload) => {
-  const userDetails = { ...payload };
-  return async function addUser(dispatch) {
-    return fetch('http://localhost:3000/sign_up', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-      },
-      body: userDetails,
-    })
-      .then((response) => response.status === 201 && dispatch(addUser(userDetails)));
-  };
+const signUpUser = (payload) => async function addUser(dispatch) {
+  return fetch('http://localhost:3000/sign_up', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+    },
+    body: payload,
+  })
+    .then((response) => response.status === 201 && dispatch(addUser(payload)));
 };
 
 const addDoctor = (payload) => {
@@ -29,6 +26,7 @@ const addDoctor = (payload) => {
     return fetch('https://book-a-doctor.herokuapp.com/api/v1/doctors', {
       method: 'POST',
       headers: {
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(credentials),

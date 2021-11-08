@@ -10,8 +10,7 @@ import SignUp from './components/signUp/Signup';
 
 function App() {
   const { token, setToken } = UserToken();
-  console.log(token);
-  if (token === null) {
+  if (!token) {
     return <Users setToken={setToken} />;
   }
   return (
