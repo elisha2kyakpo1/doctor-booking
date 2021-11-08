@@ -67,7 +67,7 @@ const UsersSignIn = ({ setToken }) => {
             <Button className="submit" variant="primary" type="submit">
               Submit
             </Button>
-            <div className="signup">
+            <div className="signup-div">
               <p>Not a member?</p>
               <Card.Link className="ml-2" href="#">SignUp</Card.Link>
             </div>

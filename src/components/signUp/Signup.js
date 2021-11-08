@@ -89,7 +89,7 @@ const SignUp = () => {
             <Button className="submit" variant="primary" type="submit">
               Submit
             </Button>
-            <div className="signup">
+            <div className="signup-div">
               <p>Already a member?</p>
               <Card.Link className="ml-2" href="#">Sign in</Card.Link>
             </div>

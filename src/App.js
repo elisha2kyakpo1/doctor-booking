@@ -23,9 +23,15 @@ function App() {
         <NavLinks />
         <Switch>
           {/* <Route path="/" exact component={Doctor} /> */}
-          <Route path="/signup" exact component={SignUp} />
-          <Route path="/registration" exact component={DoctorRegistration} />
-          <Route path="/login" exact component={UsersSignIn} />
+          <Route path="/registration">
+            <DoctorRegistration />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/login">
+            <UsersSignIn />
+          </Route>
         </Switch>
       </div>
     </Router>
