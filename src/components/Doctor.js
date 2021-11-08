@@ -32,7 +32,7 @@ const Doctor = () => {
           <div className="doct">
             <div className="leading">
               <h1 className="please">LEADING DOCTORS</h1>
-              <h2 className="select">please select a doctor</h2>
+              <h2 className="select">Book an appointment</h2>
             </div>
             <div className="shape">
               <div className="inner">
