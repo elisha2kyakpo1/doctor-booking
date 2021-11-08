@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { getDoctors } from '../redux/Doctors';
 
-const Doctors = () => {
+const Doctor = () => {
   const doctors = useSelector((state) => state.doctorReducer);
   const [doctor, setDoctor] = useState({});
 
@@ -69,4 +69,4 @@ const Doctors = () => {
   );
 };
 
-export default Doctors;
+export default Doctor;

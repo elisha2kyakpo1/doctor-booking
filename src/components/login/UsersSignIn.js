@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button, Card } from 'react-bootstrap';
 import './Users.css';
@@ -18,8 +17,6 @@ async function loginUser(credentials) {
 const UsersSignIn = ({ setToken }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
-  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +64,7 @@ const UsersSignIn = ({ setToken }) => {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button onClick={() => history.push('/')} className="submit" variant="primary" type="submit">
+            <Button className="submit" variant="primary" type="submit">
               Submit
             </Button>
             <div className="signup">

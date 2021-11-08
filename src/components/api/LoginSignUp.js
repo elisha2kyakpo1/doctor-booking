@@ -1,18 +1,26 @@
 import { addDoctorAction, removeDoctorAction } from '../../redux/Doctors';
 
-const loginUser = async (credentials) => fetch('http://localhost:3000/authenticate', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(credentials),
-})
-  .then((data) => data.json());
+const token = sessionStorage.getItem('token');
+
+const loginUser = async (credentials) => {
+  if (token) {
+    fetch('http://localhost:3000/authenticate', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    })
+      .then((data) => data.json());
+  }
+};
 
 const signUpUser = (payload) => async function addUser(dispatch) {
   return fetch('http://localhost:3000/sign_up', {
     method: 'POST',
     headers: {
+      Authorization: `Bearer ${token}`,
       Accept: 'application/json',
     },
     body: payload,

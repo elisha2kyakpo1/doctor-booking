@@ -1,30 +1,34 @@
 import React from 'react';
 import {
-  BrowserRouter, Route, Switch,
+  BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom';
 import './App.css';
-import Users from './components/login/UsersSignIn';
-import Doctor from './components/Doctor';
+
+import UsersSignIn from './components/login/UsersSignIn';
 import UserToken from './components/login/UserToken';
 import SignUp from './components/signUp/Signup';
 
+import DoctorRegistration from './components/doctor-register/DoctorRegistration';
+// import Doctor from './components/Doctor';
+import NavLinks from './components/nav/NavLinks';
+
 function App() {
   const { token, setToken } = UserToken();
-  if (!token) {
-    return <Users setToken={setToken} />;
+  if (token) {
+    return <UsersSignIn setToken={setToken} />;
   }
   return (
-    <div className="wrapper">
-      <SignUp />
-      <BrowserRouter>
+    <Router>
+      <div className="App">
+        <NavLinks />
         <Switch>
-          <Route path="/dashboard"> </Route>
-          <Route path="/users">
-            <Doctor />
-          </Route>
+          {/* <Route path="/" exact component={Doctor} /> */}
+          <Route path="/signup" exact component={SignUp} />
+          <Route path="/registration" exact component={DoctorRegistration} />
+          <Route path="/login" exact component={UsersSignIn} />
         </Switch>
-      </BrowserRouter>
-    </div>
+      </div>
+    </Router>
   );
 }
 
