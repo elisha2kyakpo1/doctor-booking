@@ -3,14 +3,12 @@ import {
   BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom';
 import './App.css';
-
 import UsersSignIn from './components/login/UsersSignIn';
 import UserToken from './components/login/UserToken';
 import SignUp from './components/signUp/Signup';
-
 import DoctorRegistration from './components/doctor-register/DoctorRegistration';
-// import Doctor from './components/Doctor';
 import NavLinks from './components/nav/NavLinks';
+import Home from './components/home/Home';
 
 function App() {
   const { token, setToken } = UserToken();
@@ -22,7 +20,7 @@ function App() {
       <div className="App">
         <NavLinks />
         <Switch>
-          {/* <Route path="/" exact component={Doctor} /> */}
+          <Route path="/" exact component={Home} />
           <Route path="/registration">
             <DoctorRegistration />
           </Route>
