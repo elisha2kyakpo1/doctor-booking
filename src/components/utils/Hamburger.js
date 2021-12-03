@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import './Hamburger.css';
 
 const Hamburger = () => {
@@ -27,13 +29,9 @@ const Hamburger = () => {
       <nav className="nav-menu-mobile d-flex">
         {menu}
         <div className="logo">
-          <h3>LEADING DOCTORS</h3>
+          <h3>Doctors on demand</h3>
         </div>
-        <div className="burger" onClick={() => setShowMenu(!showMenu)}>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
+        <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(!showMenu)} />
       </nav>
       <p className="paragraph">please select a doctor</p>
     </div>
